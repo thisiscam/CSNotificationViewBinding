@@ -1,0 +1,5 @@
+/Users/jianqiaoyang/Desktop/CSNotificationView-0.4.2/CSNotificationBinding/CSNotificationBinding/obj/Debug/MonoTouch,Version=v1.0.AssemblyAttribute.cs
+/Users/jianqiaoyang/Desktop/CSNotificationView-0.4.2/CSNotificationBinding/CSNotificationBinding/bin/Debug/CSNotificationBinding.dll.mdb
+/Users/jianqiaoyang/Desktop/CSNotificationView-0.4.2/CSNotificationBinding/CSNotificationBinding/bin/Debug/CSNotificationBinding.dll
+/Users/jianqiaoyang/Desktop/CSNotificationView-0.4.2/CSNotificationBinding/CSNotificationBinding/obj/Debug/CSNotificationBinding.dll
+/Users/jianqiaoyang/Desktop/CSNotificationView-0.4.2/CSNotificationBinding/CSNotificationBinding/obj/Debug/CSNotificationBinding.dll.mdb

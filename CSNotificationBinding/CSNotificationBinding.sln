@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSNotificationBinding", "CSNotificationBinding\CSNotificationBinding.csproj", "{ECC15BD1-E8A1-4B8C-A737-92705E2B36F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECC15BD1-E8A1-4B8C-A737-92705E2B36F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC15BD1-E8A1-4B8C-A737-92705E2B36F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC15BD1-E8A1-4B8C-A737-92705E2B36F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC15BD1-E8A1-4B8C-A737-92705E2B36F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CSNotificationBinding\CSNotificationBinding.csproj
+	EndGlobalSection
+EndGlobal
