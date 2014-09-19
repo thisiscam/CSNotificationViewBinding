@@ -242,7 +242,7 @@ static NSString * kCSNavigationBarBoundsKeyPath = @"bounds";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == kCSNavigationBarObservationContext && [keyPath isEqualToString:kCSNavigationBarBoundsKeyPath]) {
-        self.frame = self.visible ? [self visibleFrame] : [self hiddenFrame];
+        [self setFrame: self.visible ? [self visibleFrame] : [self hiddenFrame]];
         [self setNeedsLayout];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -335,6 +335,10 @@ static NSString * kCSNavigationBarBoundsKeyPath = @"bounds";
 
 - (void)setFrame:(CGRect)frame
 {
+    NSLog(@"my bound's height is %f",self.bounds.size.height);
+    if(frame.size.height != [self visibleFrame].size.height && frame.size.height != [self hiddenFrame].size.height){
+        return;
+    }
     [super setFrame:frame];
     //Update blur layer frame by updating the bounds frame
     self.toolbar.frame = self.bounds;
@@ -375,7 +379,7 @@ static NSString * kCSNavigationBarBoundsKeyPath = @"bounds";
         [self animationFramesForVisible:visible startFrame:&startFrame endFrame:&endFrame];
         
         if (!self.superview) {
-            self.frame = startFrame;
+            [self setFrame:startFrame];
             
             if (self.parentNavigationController) {
                 [self.parentNavigationController.view insertSubview:self belowSubview:self.parentNavigationController.navigationBar];
