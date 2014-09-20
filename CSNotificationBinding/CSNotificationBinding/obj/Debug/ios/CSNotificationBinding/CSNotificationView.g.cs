@@ -42,6 +42,9 @@ namespace CSNotificationBinding {
 		const string selInitWithParentViewController_ = "initWithParentViewController:";
 		static readonly IntPtr selInitWithParentViewController_Handle = Selector.GetHandle ("initWithParentViewController:");
 		[CompilerGenerated]
+		const string selIsShowing = "isShowing";
+		static readonly IntPtr selIsShowingHandle = Selector.GetHandle ("isShowing");
+		[CompilerGenerated]
 		const string selIsShowingActivity = "isShowingActivity";
 		static readonly IntPtr selIsShowingActivityHandle = Selector.GetHandle ("isShowingActivity");
 		[CompilerGenerated]
@@ -54,8 +57,14 @@ namespace CSNotificationBinding {
 		const string selSetShowingActivity_ = "setShowingActivity:";
 		static readonly IntPtr selSetShowingActivity_Handle = Selector.GetHandle ("setShowingActivity:");
 		[CompilerGenerated]
+		const string selSetTapHandler_ = "setTapHandler:";
+		static readonly IntPtr selSetTapHandler_Handle = Selector.GetHandle ("setTapHandler:");
+		[CompilerGenerated]
 		const string selSetTintColor_ = "setTintColor:";
 		static readonly IntPtr selSetTintColor_Handle = Selector.GetHandle ("setTintColor:");
+		[CompilerGenerated]
+		const string selSetVisibleAnimatedCompletion_ = "setVisible:animated:completion:";
+		static readonly IntPtr selSetVisibleAnimatedCompletion_Handle = Selector.GetHandle ("setVisible:animated:completion:");
 		[CompilerGenerated]
 		const string selShowInViewControllerStyleMessage_ = "showInViewController:style:message:";
 		static readonly IntPtr selShowInViewControllerStyleMessage_Handle = Selector.GetHandle ("showInViewController:style:message:");
@@ -65,6 +74,9 @@ namespace CSNotificationBinding {
 		[CompilerGenerated]
 		const string selShowInViewControllerTintColorImageMessageDuration_ = "showInViewController:tintColor:image:message:duration:";
 		static readonly IntPtr selShowInViewControllerTintColorImageMessageDuration_Handle = Selector.GetHandle ("showInViewController:tintColor:image:message:duration:");
+		[CompilerGenerated]
+		const string selTapHandler = "tapHandler";
+		static readonly IntPtr selTapHandlerHandle = Selector.GetHandle ("tapHandler");
 		[CompilerGenerated]
 		const string selTintColor = "tintColor";
 		static readonly IntPtr selTintColorHandle = Selector.GetHandle ("tintColor");
@@ -155,17 +167,36 @@ namespace CSNotificationBinding {
 				throw new ArgumentNullException ("viewController");
 			if (tintColor == null)
 				throw new ArgumentNullException ("tintColor");
-			if (image == null)
-				throw new ArgumentNullException ("image");
 			if (message == null)
 				throw new ArgumentNullException ("message");
 			var nsmessage = NSString.CreateNative (message);
 			
 			CSNotificationView ret;
-			ret =  Runtime.GetNSObject<CSNotificationView> (ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr (class_ptr, selNotificationViewWithParentViewControllerTintColorImageMessage_Handle, viewController.Handle, tintColor.Handle, image.Handle, nsmessage));
+			ret =  Runtime.GetNSObject<CSNotificationView> (ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr (class_ptr, selNotificationViewWithParentViewControllerTintColorImageMessage_Handle, viewController.Handle, tintColor.Handle, image == null ? IntPtr.Zero : image.Handle, nsmessage));
 			NSString.ReleaseNative (nsmessage);
 			
 			return ret;
+		}
+		
+		[Export ("setVisible:animated:completion:")]
+		[CompilerGenerated]
+		public unsafe virtual void SetVisible (bool showing, bool animated, [BlockProxy (typeof (MonoTouch.ObjCRuntime.Trampolines.NIDCompletionCallback))]CompletionCallback completion)
+		{
+			if (completion == null)
+				throw new ArgumentNullException ("completion");
+			BlockLiteral *block_ptr_completion;
+			BlockLiteral block_completion;
+			block_completion = new BlockLiteral ();
+			block_ptr_completion = &block_completion;
+			block_completion.SetupBlock (Trampolines.SDCompletionCallback.Handler, completion);
+			
+			if (IsDirectBinding) {
+				ApiDefinition.Messaging.void_objc_msgSend_bool_bool_IntPtr (this.Handle, selSetVisibleAnimatedCompletion_Handle, showing, animated, (IntPtr) block_ptr_completion);
+			} else {
+				ApiDefinition.Messaging.void_objc_msgSendSuper_bool_bool_IntPtr (this.SuperHandle, selSetVisibleAnimatedCompletion_Handle, showing, animated, (IntPtr) block_ptr_completion);
+			}
+			block_ptr_completion->CleanupBlock ();
+			
 		}
 		
 		[Export ("showInViewController:style:message:")]
@@ -276,6 +307,41 @@ namespace CSNotificationBinding {
 		}
 		
 		[CompilerGenerated]
+		public unsafe virtual CSVoidBlock TapHandler {
+			[Export ("tapHandler", ArgumentSemantic.Copy)]
+			get {
+				BlockLiteral *ret;
+				if (IsDirectBinding) {
+					ret = (BlockLiteral *)ApiDefinition.Messaging.IntPtr_objc_msgSend (this.Handle, selTapHandlerHandle);
+				} else {
+					ret = (BlockLiteral *)ApiDefinition.Messaging.IntPtr_objc_msgSendSuper (this.SuperHandle, selTapHandlerHandle);
+				}
+				if (ret == null)
+					return null;
+				return (CSVoidBlock) (ret->Target);
+			}
+			
+			[Export ("setTapHandler:", ArgumentSemantic.Copy)]
+			set {
+				if (value == null)
+					throw new ArgumentNullException ("value");
+				BlockLiteral *block_ptr_value;
+				BlockLiteral block_value;
+				block_value = new BlockLiteral ();
+				block_ptr_value = &block_value;
+				block_value.SetupBlock (Trampolines.SDCSVoidBlock.Handler, value);
+				
+				if (IsDirectBinding) {
+					ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, selSetTapHandler_Handle, (IntPtr) block_ptr_value);
+				} else {
+					ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, selSetTapHandler_Handle, (IntPtr) block_ptr_value);
+				}
+				block_ptr_value->CleanupBlock ();
+				
+			}
+		}
+		
+		[CompilerGenerated]
 		object __mt_TintColor_var;
 		[CompilerGenerated]
 		public virtual global::MonoTouch.UIKit.UIColor TintColor {
@@ -307,6 +373,19 @@ namespace CSNotificationBinding {
 		}
 		
 		[CompilerGenerated]
+		public virtual bool Visible {
+			[Export ("isShowing")]
+			get {
+				if (IsDirectBinding) {
+					return ApiDefinition.Messaging.bool_objc_msgSend (this.Handle, selIsShowingHandle);
+				} else {
+					return ApiDefinition.Messaging.bool_objc_msgSendSuper (this.SuperHandle, selIsShowingHandle);
+				}
+			}
+			
+		}
+		
+		[CompilerGenerated]
 		protected override void Dispose (bool disposing)
 		{
 			base.Dispose (disposing);
@@ -316,4 +395,6 @@ namespace CSNotificationBinding {
 			}
 		}
 	} /* class CSNotificationView */
+	public delegate bool CompletionCallback ();
+	public delegate void CSVoidBlock ();
 }
